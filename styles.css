@@ -1,0 +1,23 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 30% 70%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-library {
+  background-color: #ffd700;
+  height: 100vh;
+}
+
+* {
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.books {
+  background-color: blanchedalmond;
+}
