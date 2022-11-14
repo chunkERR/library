@@ -2,7 +2,7 @@ const books = document.querySelector(".books");
 const formTitle = document.querySelector(".title");
 const formAuthor = document.querySelector(".author");
 const formPages = document.querySelector(".pages");
-const formRead = document.querySelector("#read");
+const selectRead = document.querySelector("#read");
 const submit = document.querySelector(".submit");
 const form = document.querySelector(".new-book");
 
@@ -28,7 +28,7 @@ function addBookToLibrary(event) {
     title: formTitle.value,
     author: formAuthor.value,
     pages: formPages.value,
-    read: formRead.value,
+    read: selectRead.value,
   };
 
   myLibrary.push(book);
@@ -60,14 +60,35 @@ function displayBooks() {
     deleteButton.dataset.linkedArray = index;
     index++;
     card.appendChild(deleteButton);
+    const toggleReadButton = document.createElement("button");
+    toggleReadButton.classList.add("toggle-button");
+    toggleReadButton.textContent = "Read/Unread";
+    card.appendChild(toggleReadButton);
 
     deleteButton.addEventListener("click", removeCard);
+    toggleReadButton.addEventListener("click", switchStatus);
 
     function removeCard() {
       let retrieveBookToRemove = deleteButton.dataset.linkedArray;
       myLibrary.splice(parseInt(retrieveBookToRemove), 1);
       card.remove();
       displayBooks();
+    }
+
+    function switchStatus() {
+      if (selectRead.value === "Yes") {
+        card.classList.toggle("read");
+      } else if (selectRead.value == "No") {
+        card.classList.toggle("unread");
+      }
+    }
+
+    function checkIfRead() {
+      if (card.value == "Yes") {
+        card.classList.toggle("read");
+      } else if (selectRead.value == "No") {
+        card.classList.toggle("unread");
+      }
     }
   });
 }
