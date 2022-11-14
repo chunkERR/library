@@ -1,12 +1,10 @@
 const books = document.querySelector(".books");
-const formTitle = document.querySelector(".title")
-const formAuthor = document.querySelector(".author")
-const formPages = document.querySelector(".pages")
-const formRead = document.querySelector("#read")
-const submit = document.querySelector(".submit")
-const form = document.querySelector(".new-book")
- 
-
+const formTitle = document.querySelector(".title");
+const formAuthor = document.querySelector(".author");
+const formPages = document.querySelector(".pages");
+const formRead = document.querySelector("#read");
+const submit = document.querySelector(".submit");
+const form = document.querySelector(".new-book");
 
 // array of books
 
@@ -24,26 +22,24 @@ let myLibrary = [];
 //   myLibrary.push(book);
 // }
 
-
 function addBookToLibrary(event) {
   event.preventDefault();
   let book = {
-title: formTitle.value,
-author: formAuthor.value,
-pages: formPages.value,
-read: formRead.value
-  }
+    title: formTitle.value,
+    author: formAuthor.value,
+    pages: formPages.value,
+    read: formRead.value,
+  };
 
-myLibrary.push(book);
-document.querySelector(".new-book").reset();
-console.log(myLibrary);
-displayBooks();
+  myLibrary.push(book);
+  document.querySelector(".new-book").reset();
+  console.log(myLibrary);
+  displayBooks();
 }
-
 
 function displayBooks() {
   let index = 0;
-  const removeCards = document.querySelectorAll('.card');
+  const removeCards = document.querySelectorAll(".card");
   for (let i = 0; i < removeCards.length; i++) {
     removeCards[i].remove();
   }
@@ -51,41 +47,37 @@ function displayBooks() {
   myLibrary.forEach((element) => {
     const card = document.createElement("div");
     card.classList.add("card");
-    books.appendChild(card); 
+    books.appendChild(card);
     for (let key in element) {
-      console.log(`${key} : ${element[key]}`)
-      const cardContent = document.createElement("p")
-      cardContent.innerHTML = (`${key} : ${element[key]}`)
+      console.log(`${key} : ${element[key]}`);
+      const cardContent = document.createElement("p");
+      cardContent.innerHTML = `${key} : ${element[key]}`;
       card.appendChild(cardContent);
     }
     const deleteButton = document.createElement("button");
     deleteButton.classList.add("delete-button");
     deleteButton.textContent = "Remove from library";
     deleteButton.dataset.linkedArray = index;
-    index++
+    index++;
     card.appendChild(deleteButton);
 
-    deleteButton.addEventListener("click", removeCard)
+    deleteButton.addEventListener("click", removeCard);
+
+    function removeCard() {
+      let retrieveBookToRemove = deleteButton.dataset.linkedArray;
+      myLibrary.splice(parseInt(retrieveBookToRemove), 1);
+      card.remove();
+      displayBooks();
+    }
   });
 }
 
-function removeCard() {
-  let retrieveBookToRemove = deleteButton.dataset.linkedArray;
-  myLibrary.splice(parseInt(retrieveBookToRemove), 1);
-  card.remove();
-  displayBooks();
-
-}
-
-
-submit.addEventListener("click", addBookToLibrary)
-
+submit.addEventListener("click", addBookToLibrary);
 
 // addBookToLibrary("The Hobbit", "J.R.R Tolkien", 300, true);
 // addBookToLibrary("The Hobbit", "J.R.R Tolkien", 300, true);
 // addBookToLibrary("The Hobbit", "J.R.R Tolkien", 300, true);
 // addBookToLibrary("The Hobbit", "J.R.R Tolkien", 300, true);
 // addBookToLibrary("Lord of the Rings", "J.R.R Tolkien", 1000, false);
-
 
 // displayBooks(myLibrary);

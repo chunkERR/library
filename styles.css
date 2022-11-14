@@ -12,10 +12,12 @@
   align-items: flex-start;
   margin-left: 20px;
   margin-top: 20px;
+  background-color: #355c7d;
+  gap: 10px;
 }
 
 .add-section {
-  background-color: #ffd700;
+  background-color: #355c7d;
   height: 100vh;
 }
 
@@ -23,12 +25,16 @@
   font-family: Georgia, "Times New Roman", Times, serif;
   margin: 0px;
   padding: 0px;
+  color: white;
 }
 
+.current-library {
+  background-color: #c06c84;
+}
 .books {
-  background-color: blanchedalmond;
+  background-color: #6c5b7b;
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-template-rows: minmax(100px, auto);
   gap: 10px;
   height: 100vh;
@@ -45,4 +51,23 @@
   height: 200px;
 }
 
+.submit {
+  border: 1px solid black;
+  border-radius: 10px;
+  font-style: bold;
+  font-family: inherit;
+  width: 200px;
+  height: 50px;
+  background-color: #c06c84;
+}
 
+.submit:hover {
+  background-color: #f67280;
+  transition: 0.7ms;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
